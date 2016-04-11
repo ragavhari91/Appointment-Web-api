@@ -56,14 +56,16 @@ router.get('/all', function(req, res, next) {
  // res.send('respond with a resource');
     
     
-    User.find({},function(error,data){
+  /*  User.find({},function(error,data){
         if(error){
             res.json(error);
         }
         else{
             res.json(data);
         }
-    });
+    }); */
+    
+    res.json(userdata);
    
 });
 

@@ -30,9 +30,17 @@ var listuser = new User();
 
 /* Create user */
 router.get('/create', function(req, res, next) {
+    
+    var user = new User({
+        firstName:req.body.firstName,
+        lastName:req.body.lastName,
+        emailID:req.body.emailID,
+        mobileNo:req.body.mobileNo,
+        password:req.body.password
+    });
 
     // save data to mongodb   
-    userdata.save(function(error){
+    user.save(function(error){
         if(error){
             res.json(error);
         }
@@ -75,6 +83,22 @@ router.get('/:id', function(req, res, next) {
    
 });
 
+
+/* User Login */
+router.post('/login', function(req, res, next) {
+ // res.send('respond with a resource');
+    
+    
+    User.findOne({emailID:req.body.emailID},function(error,data){
+        if(error){
+            res.json(error);
+        }
+        else{
+            res.json(data);
+        }
+    });
+   
+});
 
 
 module.exports = router;
